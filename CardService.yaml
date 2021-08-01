@@ -28,87 +28,6 @@ servers:
       - cert
 paths:
   /cards:
-    put:
-      tags:
-      - Update Card
-      summary: Modifies a Card Object
-      description: Modifies the information of a card account, such as card embossing
-        details, flex data details, and account address details.
-      operationId: CardModOper
-      parameters:
-      - name: EFXHeader
-        in: header
-        description: The message header request aggregate contains common information
-          for all request messages. <a href="../docs?path=docs/api-ref-EFX-header.md">
-          EFX Header Parameters </a> are required to send as a JSON object in the
-          request message.
-        required: true
-        schema:
-          $ref: '#/components/schemas/EFXHeader_2'
-        examples:
-          Cleartouch:
-            $ref: '#/components/examples/CleartouchHeaderExample'
-          Premier:
-            $ref: '#/components/examples/PremierHeaderExample'
-          Precision:
-            $ref: '#/components/examples/PrecisionHeaderExample'
-          Signature:
-            $ref: '#/components/examples/SignatureHeaderExample'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CardModRqType'
-            examples:
-              Premier:
-                $ref: '#/components/examples/PremierCardModRequestExample'
-              Signature:
-                $ref: '#/components/examples/SignatureCardModRequestExample'
-        required: true
-      responses:
-        "200":
-          description: Ok
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CardModRsType'
-              examples:
-                Premier:
-                  $ref: '#/components/examples/PremierCardModResponseExample'
-                Signature:
-                  $ref: '#/components/examples/SignatureCardModResponseExample'
-        "401":
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CardAddRsType'
-        "422":
-          description: Un-processable Entity
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CardAddRsType'
-        "500":
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CardAddRsType'
-        "503":
-          description: Service Unavailable
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CardAddRsType'
-        default:
-          description: See HTTP Status Code Standards
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CardModRsType'
-      x-group-name: Card Service
-      x-proxy-name: Update Card
     post:
       tags:
       - Add Card
@@ -149,19 +68,19 @@ paths:
                 $ref: '#/components/examples/CleartouchCardAddRequestExample'
         required: true
       responses:
-        "201":
-          description: Created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CardAddRsType'
-              examples:
-                Premier:
-                  $ref: '#/components/examples/PremierCardAddResponseExample'
-                Signature:
-                  $ref: '#/components/examples/SignatureCardAddResponseExample'
-                Cleartounch:
-                  $ref: '#/components/examples/CleartouchCardAddResponseExample'
+        # "201":
+        #   description: Created
+        #   content:
+        #     application/json:
+        #       schema:
+        #         $ref: '#/components/schemas/CardAddRsType'
+        #       examples:
+        #         Premier:
+        #           $ref: '#/components/examples/PremierCardAddResponseExample'
+        #         Signature:
+        #           $ref: '#/components/examples/SignatureCardAddResponseExample'
+        #         Cleartounch:
+        #           $ref: '#/components/examples/CleartouchCardAddResponseExample'
         "401":
           description: Unauthorized
           content:
@@ -194,169 +113,6 @@ paths:
                 $ref: '#/components/schemas/CardAddRsType'
       x-group-name: Card Service
       x-proxy-name: Add Card
-  /cards/secured:
-    put:
-      tags:
-      - Delete Card
-      summary: Delete a Card Object Secured
-      description: Deletes an EFT card account. EFT Cards are plastic cards used for
-        electronic transactions.
-      operationId: CardDelOperSecured
-      parameters:
-      - name: EFXHeader
-        in: header
-        description: The message header request aggregate contains common information
-          for all request messages. <a href="../docs?path=docs/api-ref-EFX-header.md">
-          EFX Header Parameters </a> are required to send as a JSON object in the
-          request message.
-        required: true
-        schema:
-          $ref: '#/components/schemas/EFXHeader_2'
-        examples:
-          Cleartouch:
-            $ref: '#/components/examples/CleartouchHeaderExample'
-          Premier:
-            $ref: '#/components/examples/PremierHeaderExample'
-          Precision:
-            $ref: '#/components/examples/PrecisionHeaderExample'
-          Signature:
-            $ref: '#/components/examples/SignatureHeaderExample'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CardDelRqType'
-            examples:
-              Signature:
-                $ref: '#/components/examples/SignatureCardDelRequestExample'
-        required: true
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CardDelRsType'
-              examples:
-                Signature:
-                  $ref: '#/components/examples/SignatureCardDelResponseExample'
-        "401":
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CardAddRsType'
-        "422":
-          description: Un-processable Entity
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CardAddRsType'
-        "500":
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CardAddRsType'
-        "503":
-          description: Service Unavailable
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CardAddRsType'
-        default:
-          description: See HTTP Status Code Standards
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CardDelRsType'
-              examples:
-                Signature:
-                  $ref: '#/components/examples/SignatureCardDelResponseExample'
-      deprecated: false
-      x-group-name: Card Service
-      x-proxy-name: Delete Card
-    post:
-      tags:
-      - Get Card
-      summary: Get a Card Object Secured
-      description: Retrieves the details of a card account.
-      operationId: CardInqOperSecured
-      parameters:
-      - name: EFXHeader
-        in: header
-        description: The message header request aggregate contains common information
-          for all request messages. <a href="../docs?path=docs/api-ref-EFX-header.md">
-          EFX Header Parameters </a> are required to send as a JSON object in the
-          request message.
-        required: true
-        schema:
-          $ref: '#/components/schemas/EFXHeader_2'
-        examples:
-          Cleartouch:
-            $ref: '#/components/examples/CleartouchHeaderExample'
-          Premier:
-            $ref: '#/components/examples/PremierHeaderExample'
-          Precision:
-            $ref: '#/components/examples/PrecisionHeaderExample'
-          Signature:
-            $ref: '#/components/examples/SignatureHeaderExample'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CardInqRqType'
-            examples:
-              Premier:
-                $ref: '#/components/examples/PremierCardInqRequestExample'
-              Signature:
-                $ref: '#/components/examples/SignatureCardInqRequestExample'
-        required: true
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CardInqRsType'
-              examples:
-                Premier:
-                  $ref: '#/components/examples/PremierCardInqResponseExample'
-                Signature:
-                  $ref: '#/components/examples/SignatureCardInqResponseExample'
-        "401":
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CardAddRsType'
-        "422":
-          description: Un-processable Entity
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CardAddRsType'
-        "500":
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CardAddRsType'
-        "503":
-          description: Service Unavailable
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CardAddRsType'
-        default:
-          description: See HTTP Status Code Standards
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CardInqRsType'
-      deprecated: false
-      x-group-name: Card Service
-      x-proxy-name: Get Card
 components:
   schemas:
     EFXHeader:
