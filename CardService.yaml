@@ -68,31 +68,31 @@ paths:
                 $ref: '#/components/examples/CleartouchCardAddRequestExample'
         required: true
       responses:
-        # "201":
-        #   description: Created
-        #   content:
-        #     application/json:
-        #       schema:
-        #         $ref: '#/components/schemas/CardAddRsType'
-        #       examples:
-        #         Premier:
-        #           $ref: '#/components/examples/PremierCardAddResponseExample'
-        #         Signature:
-        #           $ref: '#/components/examples/SignatureCardAddResponseExample'
-        #         Cleartounch:
-        #           $ref: '#/components/examples/CleartouchCardAddResponseExample'
-        "401":
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CardAddRsType'
         "422":
           description: Un-processable Entity
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/CardAddRsType'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardAddRsType'
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardAddRsType'
+              examples:
+                Premier:
+                  $ref: '#/components/examples/PremierCardAddResponseExample'
+                Signature:
+                  $ref: '#/components/examples/SignatureCardAddResponseExample'
+                Cleartounch:
+                  $ref: '#/components/examples/CleartouchCardAddResponseExample'
         "500":
           description: Internal Server Error
           content:
